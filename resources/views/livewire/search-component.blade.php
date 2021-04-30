@@ -54,6 +54,7 @@
 
                 </div><!--end wrap shop control-->
 
+                @if($products->count() > 0)
                 <div class="row">
 
                     <ul class="product-list grid-products equal-container">
@@ -82,6 +83,10 @@
 
                 </div>
 
+                @else
+                    <p> '{{ $search }}' No products was found</p>
+                @endif
+
                 <div class="wrap-pagination-info">
                     {{ $products->links() }}
                     {{-- <ul class="page-numbers">
@@ -97,7 +102,7 @@
             {{-- filter area --}}
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12 sitebar">
                 <div class="widget mercado-widget categories-widget">
-                    <h2 class="widget-title"><a href="{{ route('product-shop') }}">All Categories</a></h2>
+                    <h2 class="widget-title">All Categories</h2>
                     <div class="widget-content">
                         <ul class="list-category">
 

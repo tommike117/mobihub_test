@@ -5,6 +5,10 @@ use App\Http\Livewire\HomeComponent;
 use App\Http\Livewire\ShopComponent;
 use App\Http\Livewire\CartComponent;
 use App\Http\Livewire\CheckoutComponent;
+use App\Http\Livewire\DetailsComponent;
+use App\Http\Livewire\CategoryComponent;
+use App\Http\Livewire\SearchComponent;
+use App\Http\Livewire\Admin\AdminCategoryComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 /*
@@ -23,20 +27,32 @@ use App\Http\Livewire\User\UserDashboardComponent;
 // });
 Route::get('/', HomeComponent::class);
 
-Route::get('/shop', ShopComponent::class);
+Route::get('/shop', ShopComponent::class)->name('product-shop');
 
-Route::get('/cart', CartComponent::class);
+Route::get('/cart', CartComponent::class)->name('product-cart');
 
 Route::get('/checkout', CheckoutComponent::class);
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
+Route::get('/product-category/{category_slug}', CategoryComponent::class)->name('product-category');
+
+//put ? after a parameter that may not always be present in the URI.
+Route::get('/product/{slug?}', DetailsComponent::class)->name('product-details');
+
+Route::get('/search', SearchComponent::class)->name('product-search');
+
+
+
+
+
+// Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+//     return view('dashboard');
+// })->name('dashboard');
 
 //For Admin
 Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function() {
 
-    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('admin-dashboard');
+    Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('dashboard');
+    Route::get('/admin/dashboard/categories', AdminCategoryComponent::class)->name('dashboard-categories');
 });
 
 //For User

@@ -74,7 +74,7 @@
 												<a title="My Account" href="#">{{ Auth::user()->name }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 												<ul class="submenu my-account" >
 													<li class="menu-item" >
-														<a title="Dashboard" href="/dashboard">Dashborad</a>
+														<a title="Dashboard" href="{{ route('dashboard') }}" target="_blank">Dashborad</a>
 													</li>
 													<li class="menu-item">
 														<form method="POST" action="{{ route('logout') }}">
@@ -95,7 +95,7 @@
 											<a title="My Account" href="#">{{ Auth::user()->name }}<i class="fa fa-angle-down" aria-hidden="true"></i></a>
 											<ul class="submenu my-account" >
 												<li class="menu-item" >
-													<a title="Dashboard" href="{{ route('user-dashboard') }}">Dashborad</a>
+													<a title="Dashboard" href="{{ route('user-dashboard') }}" target="_blank">Dashborad</a>
 												</li>
 												<li class="menu-item">
 													<form method="POST" action="{{ route('logout') }}">
@@ -129,37 +129,8 @@
 							<a href="index.html" class="link-to-home"><img src="{{ asset('assets/images/logo-top-1.png') }}" alt="mercado"></a>
 						</div>
 
-						<div class="wrap-search center-section">
-							<div class="wrap-search-form">
-								<form action="#" id="form-search-top" name="form-search-top">
-									<input type="text" name="search" value="" placeholder="Search here...">
-									<button form="form-search-top" type="button"><i class="fa fa-search" aria-hidden="true"></i></button>
-									<div class="wrap-list-cate">
-										<input type="hidden" name="product-cate" value="0" id="product-cate">
-										<a href="#" class="link-control">All Category</a>
-										<ul class="list-cate">
-											<li class="level-0">All Category</li>
-											<li class="level-1">-Electronics</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Headphone & Headsets</li>
-											<li class="level-2">Mp3 Player & Acessories</li>
-											<li class="level-1">-Smartphone & Table</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Mp3 Player & Headphones</li>
-											<li class="level-2">Table & Accessories</li>
-											<li class="level-1">-Electronics</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Headphone & Headsets</li>
-											<li class="level-2">Mp3 Player & Acessories</li>
-											<li class="level-1">-Smartphone & Table</li>
-											<li class="level-2">Batteries & Chargens</li>
-											<li class="level-2">Mp3 Player & Headphones</li>
-											<li class="level-2">Table & Accessories</li>
-										</ul>
-									</div>
-								</form>
-							</div>
-						</div>
+		{{-- Search Header --}}
+		@livewire('header-search-component')
 
 						<div class="wrap-icon right-section">
 							<div class="wrap-icon-section wishlist">
@@ -175,8 +146,10 @@
 								<a href="#" class="link-direction">
 									<i class="fa fa-shopping-basket" aria-hidden="true"></i>
 									<div class="left-info">
-										<span class="index">4 items</span>
-										<span class="title">CART</span>
+										@if (Cart::count() > 0)
+											<span class="index">{{ CART::count() }} items</span>
+										@endif
+											<span class="title">CART</span>
 									</div>
 								</a>
 							</div>
@@ -494,11 +467,11 @@
 	<script src="{{ asset('assets/js/jquery-ui-1.12.4.minb8ff.js?ver=1.12.4') }}"></script>
 	<script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.flexslider.js') }}"></script>
-	<script src="{{ asset('assets/js/chosen.jquery.min.js') }}"></script>
+	{{-- <script src="{{ asset('assets/js/chosen.jquery.min.js') }}"></script> --}}
 	<script src="{{ asset('assets/js/owl.carousel.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.countdown.min.js') }}"></script>
 	<script src="{{ asset('assets/js/jquery.sticky.js') }}"></script>
 	<script src="{{ asset('assets/js/functions.js') }}"></script>
-	@@livewireScripts
+	@livewireScripts
 </body>
 </html>

@@ -12,7 +12,7 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
+        @trixassets
         @livewireStyles
 
         <!-- Scripts -->
@@ -41,6 +41,10 @@
 
         @stack('modals')
 
+        <!-- Optional JavaScript -->
+        {{-- Popper.js first, then CoreUI JS --}}
+        
         @livewireScripts
+        @yield('scripts')
     </body>
 </html>

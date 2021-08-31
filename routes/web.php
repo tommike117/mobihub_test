@@ -10,6 +10,10 @@ use App\Http\Livewire\CategoryComponent;
 use App\Http\Livewire\SearchComponent;
 use App\Http\Livewire\Admin\AdminCategoryComponent;
 use App\Http\Livewire\Admin\AdminDashboardComponent;
+use App\Http\Livewire\Admin\AdminPostComponent;
+use App\Http\Livewire\Admin\Post\PostCreateComponent;
+use App\Http\Livewire\Admin\Post\PostShowComponent;
+use App\Http\Livewire\Admin\Post\EditPostComponent;
 use App\Http\Livewire\User\UserDashboardComponent;
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +44,10 @@ Route::get('/product/{slug?}', DetailsComponent::class)->name('product-details')
 
 Route::get('/search', SearchComponent::class)->name('product-search');
 
+//Displaying Posts
+Route::get('/post/{slug}', PostShowComponent::class)->name('post-show');
+
+
 
 
 
@@ -53,6 +61,9 @@ Route::middleware(['auth:sanctum', 'verified', 'authadmin'])->group(function() {
 
     Route::get('/admin/dashboard', AdminDashboardComponent::class)->name('dashboard');
     Route::get('/admin/dashboard/categories', AdminCategoryComponent::class)->name('dashboard-categories');
+    Route::get('/admin/dashboard/posts', AdminPostComponent::class)->name('dashboard-posts');
+    Route::get('/admin/dashboard/post/create', PostCreateComponent::class)->name('dashboard-posts-create');
+    Route::get('/admin/dashboard/post/edit/{post}', EditPostComponent::class)->name('dashboard-posts-edit');
 });
 
 //For User
